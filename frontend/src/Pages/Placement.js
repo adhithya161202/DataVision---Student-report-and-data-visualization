@@ -7,6 +7,9 @@ import { usePDF } from 'react-to-pdf';
 import axios from 'axios';
 
 
+
+
+
 const Placement = () => {
     const [placements, setPlacements] = useState([]);
     const [filteredPlacements, setFilteredPlacements] = useState([]);
