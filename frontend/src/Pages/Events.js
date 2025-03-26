@@ -6,10 +6,12 @@ import axios from 'axios';
 import { usePDF } from 'react-to-pdf';
 
 
+
 const Events = () => {
     const [eventsData, setEventsData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
     const [selectedDepartment, setSelectedDepartment] = useState("all");
+
     const [startYear, setStartYear] = useState("all");
     const [endYear, setEndYear] = useState("all");
     const { toPDF, targetRef } = usePDF({ filename: 'publications.pdf' });
