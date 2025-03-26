@@ -7,8 +7,6 @@ import './Dashboard.css';
 import StudentsPieChart from "../components/pie3.js";
 
 
-
-
 const Dashboard = () => {
     const [userInitials, setUserInitials] = useState('');
     const [userName, setUserName] = useState('');
