@@ -26,6 +26,7 @@ const Account = () => {
     });
   }, []);
 
+
   const handleTabClick = (tab) => {
     setActiveTab(tab);
   };
