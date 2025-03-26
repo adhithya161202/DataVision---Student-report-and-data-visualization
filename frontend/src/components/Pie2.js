@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { Pie, Bar, Line, Doughnut, Radar, PolarArea } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 
+
 Chart.register(...registerables);
 
 const SocietyChart = ({ data }) => {
