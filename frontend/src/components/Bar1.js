@@ -4,6 +4,8 @@
 
 // Chart.register(...registerables);
 
+
+
 // const EventParticipationChart = ({ data }) => {
 //   const [chartType, setChartType] = useState('bar');
 
