@@ -141,7 +141,7 @@ const Dashboard = () => {
 
                     <div className="data-card">
 
-                        <div className="graph-container">  {/* Add a container for the bar graph*/}
+                        <div className="graph-container">  
                             <StudentsPieChart />
                         </div>
                     </div>
@@ -151,13 +151,7 @@ const Dashboard = () => {
                             <BarGraph />
                         </div>
                     </div>
-                    {/* <div className="data-card">
-                        <h3 className="data-card-h3">Publications Trend</h3>
-                        <div className="line2-container">  
-                        </div>
-                    </div> */}
-
-
+                   
                 </div>
             </div>
         </div>
