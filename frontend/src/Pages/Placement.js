@@ -58,27 +58,7 @@ const Placement = () => {
         fetchTableData();
     }, []);
 
-    // ... existing c
-
-
-
-
-
-
-    // const applyFilters = () => {
-    //     console.log("Selected Year:", selectedYear);
-
-    //     if (selectedYear === "All Years") {
-    //         setFilteredPlacements(placements);
-    //         console.log("Filtered Placements (All Years):", placements);
-    //     } else {
-    //         const filteredData = placements.filter(
-    //             (placement) => placement.year === parseInt(selectedYear)
-    //         );
-    //         setFilteredPlacements(filteredData);
-    //         console.log("Filtered Placements:", filteredData);
-    //     }
-    // };
+ 
 
     const fetchTableData = () => {
         axios.get('http://localhost:8080/api/placements/all')
