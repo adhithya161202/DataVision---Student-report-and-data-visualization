@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; // Import useNavigate for navigation
+import { useNavigate } from "react-router-dom"; 
 import "./Registration.css";
 
 function Registration() {
@@ -11,7 +11,7 @@ function Registration() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [termsAgreed, setTermsAgreed] = useState(false);
 
-    const navigate = useNavigate(); // Initialize useNavigate hook
+    const navigate = useNavigate(); 
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -38,15 +38,15 @@ function Registration() {
             });
     
             if (!response.ok) {
-                const errorMessage = await response.text(); // Read error message from backend
+                const errorMessage = await response.text(); 
                 alert(`Registration failed: ${errorMessage}`);
                 return;
             }
     
             const successMessage = await response.text();
-            alert(successMessage); // Show success message
+            alert(successMessage); 
     
-            // Redirect to login page
+            
             window.location.href = "/login";
         } catch (error) {
             console.error("Error during registration:", error);
