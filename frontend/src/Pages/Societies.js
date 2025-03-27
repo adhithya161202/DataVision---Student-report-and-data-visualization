@@ -8,6 +8,7 @@ import SocietyService from '../services/SocietyService';
 import { usePDF } from 'react-to-pdf';
 
 
+
 const Societies = () => {
     const [societies, setSocieties] = useState([]);
     const [loading, setLoading] = useState(true);

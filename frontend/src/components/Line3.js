@@ -4,6 +4,8 @@ import React, { useState, useEffect, useMemo } from "react";
 import { Bar, Line, Pie, Doughnut, Radar, PolarArea } from "react-chartjs-2";
 import { Chart, registerables } from "chart.js";
 
+
+
 Chart.register(...registerables);
 
 function getRandomColor() {

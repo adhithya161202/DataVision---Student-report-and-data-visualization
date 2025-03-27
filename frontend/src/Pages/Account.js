@@ -3,6 +3,8 @@ import { Link, useNavigate } from 'react-router-dom';
 import './Account.css';
 import './Dashboard.css';
 
+
+
 const Account = () => {
   const [activeTab, setActiveTab] = useState('account');
   const [userData, setUserData] = useState({
@@ -25,6 +27,7 @@ const Account = () => {
       initials: `${firstName.charAt(0)}${lastName.charAt(0)}`.toUpperCase()
     });
   }, []);
+
 
   const handleTabClick = (tab) => {
     setActiveTab(tab);
