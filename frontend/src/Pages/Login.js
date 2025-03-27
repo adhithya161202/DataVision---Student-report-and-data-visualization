@@ -9,34 +9,6 @@ function Login() {
     const [errorMessage, setErrorMessage] = useState('');
 
 
-    // const handleSubmit = async (event) => {
-    //     event.preventDefault();
-
-    //     const payload = { usernameOrEmail, password };
-
-    //     try {
-    //         const response = await fetch("http://localhost:8080/api/auth/login", {
-    //             method: "POST",
-    //             headers: { "Content-Type": "application/json" },
-    //             body: JSON.stringify(payload),
-    //         });
-
-    //         if (!response.ok) {
-    //             const errorMessage = await response.text();
-    //             alert(`Login failed: ${errorMessage}`);
-    //             return;
-    //         }
-
-    //         alert("Login successful!");
-    //         localStorage.setItem("isLoggedIn", true);
-
-    //         window.location.href = "/dashboard";
-    //     } catch (error) {
-    //         console.error("Error during login:", error);
-    //         alert("An unexpected error occurred. Please try again later.");
-    //     }
-    // };
-
 
 
     const handleSubmit = async (event) => {
