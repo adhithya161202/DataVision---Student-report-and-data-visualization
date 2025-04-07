@@ -1,25 +1,23 @@
-
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
-import EventParticipationChart from '../components/Pie2.js';
-import './Dashboard.css';
 import SocietyChart from '../components/Pie2.js';
 import SocietyService from '../services/SocietyService';
 import { usePDF } from 'react-to-pdf';
-
-
+import html2pdf from 'html2pdf.js';
+import './Dashboard.css';
 
 const Societies = () => {
     const [societies, setSocieties] = useState([]);
     const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
 
-    const [selectedYear, setSelectedYear] = useState("All Years");
+    const [startYear, setStartYear] = useState("");
+    const [endYear, setEndYear] = useState("");
     const [filteredSocieties, setFilteredSocieties] = useState([]);
-    const { toPDF, targetRef } = usePDF({ filename: 'societies.pdf' });
     const [showTable, setShowTable] = useState(false);
+    const { toPDF, targetRef } = usePDF({ filename: 'societies_chart.pdf' });
 
-
+    const tableRef = useRef();
     const [userInitials, setUserInitials] = useState("");
     const [userName, setUserName] = useState("");
 
@@ -30,28 +28,12 @@ const Societies = () => {
         setUserName(`${firstName} ${lastName}`);
     }, []);
 
-
-
-    // useEffect(() => {
-    //     setLoading(true);
-    //     SocietyService.getAllSocieties()
-    //       .then(response => {
-    //         setSocieties(response.data);
-    //         setLoading(false);
-    //       })
-    //       .catch(error => {
-    //         console.error('Error fetching societies:', error);
-    //         setError('Failed to fetch society data');
-    //         setLoading(false);
-    //       });
-    //   }, []);
-
     useEffect(() => {
         setLoading(true);
         SocietyService.getAllSocieties()
             .then(response => {
                 setSocieties(response.data);
-                setFilteredSocieties(response.data); // Initialize filtered data
+                setFilteredSocieties(response.data);
                 setLoading(false);
             })
             .catch(error => {
@@ -62,26 +44,33 @@ const Societies = () => {
     }, []);
 
     const applyFilters = () => {
-        console.log("Selected Year:", selectedYear); // Log selected year
         let filteredData = societies;
-
-        if (selectedYear !== "All Years") {
-            filteredData = filteredData.filter(
-                (society) => society.batchYear === selectedYear
+        if (startYear && endYear) {
+            filteredData = societies.filter(
+                society => society.batchYear >= startYear && society.batchYear <= endYear
             );
         }
-
-        console.log("Filtered Data:", filteredData); // Log filtered data
         setFilteredSocieties(filteredData);
     };
 
+    const fetchTableData = () => {
+        setShowTable(true);
+    };
 
-
-
+    const exportTableToPDF = () => {
+        const element = tableRef.current;
+        const opt = {
+            margin: 0.5,
+            filename: 'society_table.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+        html2pdf().set(opt).from(element).save();
+    };
 
     return (
         <div className="dashboard-container">
-            {/* Sidebar */}
             <div className="sidebar">
                 <div className="sidebar-header">
                     <h2 className="sidebar-header-h2">DATA VISION</h2>
@@ -157,8 +146,8 @@ const Societies = () => {
                         </div> */}
 
             </div>
-
             {/* Main Content */}
+
             <div className="main-content">
                 <header className="dashboard-header">
                     <h1 className="dashboard-header-h1">Society Details</h1>
@@ -193,35 +182,53 @@ const Societies = () => {
                         <p className="stat-card-p:last-child">Last year</p>
                     </div>
                 </div>
+
                 {/* Filters */}
                 <div className="filters-container">
-                    <label htmlFor="yearFilter" className="filter-label">Year:</label>
-                    <select
-                        id="yearFilter"
-                        className="filter-select"
-                        value={selectedYear}
-                        onChange={(e) => setSelectedYear(e.target.value)}
-                    >
-                        <option value="All Years">All Years</option>
+                    <label className="filter-label">Start Year:</label>
+                    <select className="filter-select" value={startYear} onChange={(e) => setStartYear(e.target.value)}>
+                        <option value="">All Years</option>
                         <option value="2016">2016</option>
                         <option value="2017">2017</option>
                         <option value="2018">2018</option>
                         <option value="2019">2019</option>
                         <option value="2020">2020</option>
                     </select>
-                    <button className="apply-filters-button" onClick={applyFilters}>Apply Filters</button>
-                    <button className="apply-filters-button" onClick={() => toPDF()}>Export as PDF</button>
-                    <button className="apply-filters-button" onClick={() => setShowTable(!showTable)}>
+
+                    <label className="filter-label">End Year:</label>
+                    <select className="filter-select" value={endYear} onChange={(e) => setEndYear(e.target.value)}>
+                        <option value="">All Years</option>
+                        <option value="2016">2016</option>
+                        <option value="2017">2017</option>
+                        <option value="2018">2018</option>
+                        <option value="2019">2019</option>
+                        <option value="2020">2020</option>
+                    </select>
+
+                    <button className="apply-filters-button" onClick={applyFilters}>
+                        Apply Filters
+                    </button>
+                    <button className="apply-filters-button" onClick={() => toPDF()}>
+                        Export Chart PDF
+                    </button>
+                    <button className="apply-filters-button" onClick={() => {
+                        fetchTableData();
+                        setShowTable(!showTable);
+                    }}>
                         {showTable ? "Hide Table" : "View Table"}
                     </button>
+
+                    {showTable && (
+                        <button className="apply-filters-button" onClick={exportTableToPDF}>
+                            Export Table PDF
+                        </button>
+                    )}
                 </div>
 
-
-
-                {/* Data Visualizations */}
+                {/* Society Chart */}
                 <div className="data-visualizations">
                     <div className="data-card">
-                        <h3 className="data-card-h3">Event Participation Chart</h3>
+                        <h3 className="data-card-h3">Societies Chart</h3>
                         <div className="bar-graph-container">
                             {loading ? (
                                 <p>Loading chart data...</p>
@@ -238,7 +245,7 @@ const Societies = () => {
 
                 {/* Society Table */}
                 {showTable && (
-                    <div className="table-container">
+                    <div className="table-container" ref={tableRef}>
                         <h3 className="data-card-h3">Society Table</h3>
                         <table className="data-table">
                             <thead>
@@ -262,14 +269,9 @@ const Societies = () => {
                         </table>
                     </div>
                 )}
-
-
             </div>
         </div>
     );
 };
-
-
-
 
 export default Societies;
