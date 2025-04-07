@@ -4,7 +4,7 @@ import PublicationsTrendChart from '../components/Line3.js';
 import './Dashboard.css';
 import PublicationService from '../services/PublicationService';
 import { usePDF } from 'react-to-pdf';
-import html2pdf from 'html2pdf.js'; 
+import html2pdf from 'html2pdf.js';
 
 const Publications = () => {
     const [publications, setPublications] = useState([]);
@@ -19,7 +19,7 @@ const Publications = () => {
     const [userInitials, setUserInitials] = useState("");
     const [userName, setUserName] = useState("");
 
-    const tableRef = useRef(); 
+    const tableRef = useRef();
 
     useEffect(() => {
         const firstName = localStorage.getItem("firstName") || "";
@@ -62,15 +62,15 @@ const Publications = () => {
         setShowTable(true);
     };
 
-    
+
     const exportTableToPDF = () => {
         const element = tableRef.current;
         const opt = {
-            margin:       0.5,
-            filename:     'publication_table.pdf',
-            image:        { type: 'jpeg', quality: 0.98 },
-            html2canvas:  { scale: 2 },
-            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+            margin: 0.5,
+            filename: 'publication_table.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
         html2pdf().set(opt).from(element).save();
     };
