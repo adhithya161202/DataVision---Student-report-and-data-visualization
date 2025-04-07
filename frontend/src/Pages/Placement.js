@@ -6,6 +6,7 @@ import PlacementService from '../services/PlacementService';
 import { usePDF } from 'react-to-pdf';
 import html2pdf from 'html2pdf.js';
 
+
 const Placement = () => {
     const [placements, setPlacements] = useState([]);
     const [filteredPlacements, setFilteredPlacements] = useState([]);
