@@ -25,7 +25,7 @@ const Dashboard = () => {
                 <div className="sidebar-header">
                     <h2 className="sidebar-header-h2">DATA VISION</h2>
                     <div className="profile-section">
-                        {/* <div style={styles.profilePic}>AD</div> */}
+            
                     </div>
                 </div>
                 {/* <p className="sidebar-header-p">Admin Dashboard</p> */}
