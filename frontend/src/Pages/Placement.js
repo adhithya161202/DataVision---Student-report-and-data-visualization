@@ -1,19 +1,15 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { Link } from 'react-router-dom';
 import PlacementChart from '../components/Pie.js';
 import './Dashboard.css';
 import PlacementService from '../services/PlacementService';
 import { usePDF } from 'react-to-pdf';
-import axios from 'axios';
-
-
-
+import html2pdf from 'html2pdf.js';
 
 const Placement = () => {
     const [placements, setPlacements] = useState([]);
     const [filteredPlacements, setFilteredPlacements] = useState([]);
-    const [selectedYear, setSelectedYear] = useState("All Years");
-    const [loading, setLoading] = useState(true); // Initialize as true
+    const [loading, setLoading] = useState(true);
     const [error, setError] = useState(null);
     const [selectedDepartment, setSelectedDepartment] = useState("All Departments");
     const { toPDF, targetRef } = usePDF({ filename: 'Placement.pdf' });
@@ -21,8 +17,10 @@ const Placement = () => {
     const [tableData, setTableData] = useState([]);
     const [userInitials, setUserInitials] = useState("");
     const [userName, setUserName] = useState("");
+    const [startYear, setStartYear] = useState("");
+    const [endYear, setEndYear] = useState("");
 
-
+    const tableRef = useRef();
 
     useEffect(() => {
         const firstName = localStorage.getItem("firstName") || "";
@@ -35,9 +33,8 @@ const Placement = () => {
         setLoading(true);
         PlacementService.getAllPlacements()
             .then(response => {
-                console.log("API Response:", response.data);
                 setPlacements(response.data);
-                setFilteredPlacements(response.data); // Initialize filtered data
+                setFilteredPlacements(response.data);
                 setLoading(false);
             })
             .catch(error => {
@@ -47,36 +44,32 @@ const Placement = () => {
             });
     }, []);
 
-    useEffect(() => {
-        const fetchTableData = async () => {
-            try {
-                const response = await axios.get('http://localhost:8080/api/placements/all');
-                setTableData(response.data);
-            } catch (error) {
-                console.error("Error fetching table data:", error);
-            }
+    const handlePrint = () => {
+        if (!tableRef.current) return;
+
+        const element = tableRef.current;
+        const opt = {
+            margin: 0.5,
+            filename: 'PlacementData.pdf',
+            image: { type: 'jpeg', quality: 0.98 },
+            html2canvas: { scale: 2 },
+            jsPDF: { unit: 'in', format: 'letter', orientation: 'portrait' }
         };
 
-        fetchTableData();
-    }, []);
-
- 
+        html2pdf().set(opt).from(element).save();
+    };
 
     const fetchTableData = () => {
-        axios.get('http://localhost:8080/api/placements/all')
-            .then(response => {
-                setTableData(response.data); // Store fetched data in state
-                setShowTable(true); // Show the table
-            })
-            .catch(error => console.error("Error fetching table data:", error));
+        setTableData(filteredPlacements);
+        setShowTable(true);
     };
 
     const applyFilters = () => {
         let filteredData = placements;
 
-        if (selectedYear !== "All Years") {
+        if (startYear && endYear) {
             filteredData = filteredData.filter(
-                (placement) => placement.year === parseInt(selectedYear)
+                (placement) => placement.year >= parseInt(startYear) && placement.year <= parseInt(endYear)
             );
         }
 
@@ -88,11 +81,6 @@ const Placement = () => {
 
         setFilteredPlacements(filteredData);
     };
-
-
-
-
-
 
     return (
         <div className="dashboard-container">
@@ -115,7 +103,7 @@ const Placement = () => {
                     <p className="sidebar-analytics-p">ANALYTICS</p>
                     <ul className="sidebar-analytics-ul">
                         <li className="sidebar-analytics-li">
-                            <Link to="/Placement" className="sidebar-analytics-link  sidebar-analytics-link-active">
+                            <Link to="/Placement" className="sidebar-analytics-link sidebar-analytics-link-active">
                                 <i className="fas fa-chart-bar main-icons"></i>Placement
                             </Link>
                         </li>
@@ -149,7 +137,6 @@ const Placement = () => {
                                 <i className="fas fa-question-circle main-icons"></i>Contact
                             </Link>
                         </li>
-
                         <li className="sidebar-settings-li">
                             <Link to="/Contact" className="sidebar-settings-link">
                                 <i className="fas fa-question-circle main-icons"></i>Logout
@@ -158,7 +145,6 @@ const Placement = () => {
                     </ul>
                 </div>
             </div>
-
 
             <div className="main-content">
                 <header className="dashboard-header">
@@ -197,14 +183,9 @@ const Placement = () => {
 
                 {/* Filters */}
                 <div className="filters-container">
-                    <label htmlFor="yearFilter" className="filter-label">Year:</label>
-                    <select
-                        id="yearFilter"
-                        className="filter-select"
-                        value={selectedYear}
-                        onChange={(e) => setSelectedYear(e.target.value)}
-                    >
-                        <option value="All Years">All Years</option>
+                    <label className="filter-label">Start Year</label>
+                    <select className="filter-select" value={startYear} onChange={(e) => setStartYear(e.target.value)}>
+                        <option value="null">All Years</option>
                         <option value="2020">2020</option>
                         <option value="2021">2021</option>
                         <option value="2022">2022</option>
@@ -212,13 +193,18 @@ const Placement = () => {
                         <option value="2024">2024</option>
                     </select>
 
-                    <label htmlFor="departmentFilter" className="filter-label">Department:</label>
-                    <select
-                        id="departmentFilter"
-                        className="filter-select"
-                        value={selectedDepartment}
-                        onChange={(e) => setSelectedDepartment(e.target.value)}
-                    >
+                    <label className="filter-label">End Year</label>
+                    <select className="filter-select" value={endYear} onChange={(e) => setEndYear(e.target.value)}>
+                        <option value="null">All Years</option>
+                        <option value="2020">2020</option>
+                        <option value="2021">2021</option>
+                        <option value="2022">2022</option>
+                        <option value="2023">2023</option>
+                        <option value="2024">2024</option>
+                    </select>
+
+                    <label className="filter-label">Department:</label>
+                    <select className="filter-select" value={selectedDepartment} onChange={(e) => setSelectedDepartment(e.target.value)}>
                         <option value="All Departments">All Departments</option>
                         <option value="Computer Science">Computer Science</option>
                         <option value="Electronics">Electronics</option>
@@ -227,21 +213,23 @@ const Placement = () => {
                         <option value="Civil">Civil</option>
                     </select>
 
-                    <button className="apply-filters-button" onClick={applyFilters}>
-                        Apply Filters
-                    </button>
-                    <button className="apply-filters-button" onClick={() => toPDF()}>Export as PDF</button>
-                    <button className="apply-filters-button" onClick={() => setShowTable(!showTable)}>
+                    <button className="apply-filters-button" onClick={applyFilters}>Apply Filters</button>
+
+                    <button className="apply-filters-button" onClick={() => toPDF()}>Export Chart as PDF</button>
+
+                    <button className={`apply-filters-button ${showTable ? "active" : ""}`} onClick={() => {
+                        if (!showTable) fetchTableData();
+                        setShowTable(!showTable);
+                    }}>
                         {showTable ? "Hide Table" : "View Table"}
                     </button>
+
+                    {showTable && (
+                        <button className="apply-filters-button" onClick={handlePrint}>Export Table as PDF</button>
+                    )}
                 </div>
 
-
-
-
-
-
-                {/* Data Visualizations */}
+                {/* Charts */}
                 <div className="data-visualizations">
                     <div className="data-card">
                         <h3 className="data-card-h3">Placements by Company</h3>
@@ -257,14 +245,12 @@ const Placement = () => {
                             ) : (
                                 <p>No placement data available</p>
                             )}
-
-
                         </div>
                     </div>
                 </div>
 
                 {showTable && (
-                    <div className="table-container">
+                    <div className="table-container" ref={tableRef}>
                         <h3>Placement Data</h3>
                         <table className="data-table">
                             <thead>
@@ -290,17 +276,6 @@ const Placement = () => {
                         </table>
                     </div>
                 )}
-
-
-
-
-
-
-
-
-
-
-
             </div>
         </div>
     );
