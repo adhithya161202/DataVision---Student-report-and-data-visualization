@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom'; 
+import { Link } from 'react-router-dom';
 import './Dashboard.css';
 
 const Preferences = () => {
@@ -385,68 +385,68 @@ const Preferences = () => {
             {/* <div style={styles.profilePic}>AD</div> */}
           </div>
         </div>
-       
-        <div style={styles.sidebarMenu}>
-                    <ul style={styles.sidebarMenuUl}>
-                        <li style={styles.sidebarMenuLi}>
-                            <Link to="/dashboard" style={{ ...styles.sidebarMenuA}}>  
-                                <i className="fas fa-tachometer-alt" style={styles.mainIcons}></i>Dashboard
-                            </Link>
-                        </li>
-                        <li style={styles.sidebarMenuLi}>
-                            <Link to="/students" style={styles.sidebarMenuA}> 
-                                <i className="fas fa-user-graduate" style={styles.mainIcons}></i>Students
-                            </Link>
-                        </li>
-                        <li style={styles.sidebarMenuLi}>
-                            <Link to="/departments" style={styles.sidebarMenuA}>
-                                <i className="fas fa-building" style={styles.mainIcons}></i>Departments
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-                <div style={styles.sidebarAnalytics}>
-                    <p style={styles.sidebarAnalyticsP}>ANALYTICS</p>
-                    <ul style={styles.sidebarAnalyticsUl}>
-                    <li style={styles.sidebarAnalyticsLi}>
-                            <Link to="/placement" style={{ ...styles.sidebarAnalyticsA}}>
-                                <i className="fas fa-chart-bar" style={styles.mainIcons}></i> Placement
-                            </Link>
-                        </li>
 
-                        <li style={styles.sidebarAnalyticsLi}>
-                            <Link to="/Events" style={styles.sidebarAnalyticsA}>
-                                <i className="fas fa-calendar-alt" style={styles.mainIcons}></i>Events
-                            </Link>
-                        </li>
-                        <li style={styles.sidebarAnalyticsLi}>
-                            <Link to="/publications" style={styles.sidebarAnalyticsA}> 
-                                <i className="fas fa-newspaper" style={styles.mainIcons}></i>Publications
-                            </Link>
-                        </li>
-                        <li style={styles.sidebarAnalyticsLi}>
-                            <Link to="/societies" style={styles.sidebarAnalyticsA}> 
-                                <i className="fas fa-users" style={styles.mainIcons}></i>Societies
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-                <div style={styles.sidebarSettings}>
-                    <p style={styles.sidebarSettingsP}>SETTINGS</p>
-                    <ul style={styles.sidebarSettingsUl}>
-                        <li style={styles.sidebarSettingsLi}>
-                            <Link to="/placement" style={{ ...styles.sidebarAnalyticsA, ...styles.sidebarMenuActive }}>
-                                <i className="fas fa-cog" style={styles.mainIcons}></i>Preferences
-                            </Link>
-                        </li>
-                        <li style={styles.sidebarSettingsLi}>
-                            <Link to="/help" style={styles.sidebarSettingsA}> 
-                                <i className="fas fa-question-circle" style={styles.mainIcons}></i>Help
-                            </Link>
-                        </li>
-                    </ul>
-                </div>
-                {/* <div style={styles.sidebarAdmin}>
+        <div style={styles.sidebarMenu}>
+          <ul style={styles.sidebarMenuUl}>
+            <li style={styles.sidebarMenuLi}>
+              <Link to="/dashboard" style={{ ...styles.sidebarMenuA }}>
+                <i className="fas fa-tachometer-alt" style={styles.mainIcons}></i>Dashboard
+              </Link>
+            </li>
+            <li style={styles.sidebarMenuLi}>
+              <Link to="/students" style={styles.sidebarMenuA}>
+                <i className="fas fa-user-graduate" style={styles.mainIcons}></i>Students
+              </Link>
+            </li>
+            <li style={styles.sidebarMenuLi}>
+              <Link to="/departments" style={styles.sidebarMenuA}>
+                <i className="fas fa-building" style={styles.mainIcons}></i>Departments
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div style={styles.sidebarAnalytics}>
+          <p style={styles.sidebarAnalyticsP}>ANALYTICS</p>
+          <ul style={styles.sidebarAnalyticsUl}>
+            <li style={styles.sidebarAnalyticsLi}>
+              <Link to="/placement" style={{ ...styles.sidebarAnalyticsA }}>
+                <i className="fas fa-chart-bar" style={styles.mainIcons}></i> Placement
+              </Link>
+            </li>
+
+            <li style={styles.sidebarAnalyticsLi}>
+              <Link to="/Events" style={styles.sidebarAnalyticsA}>
+                <i className="fas fa-calendar-alt" style={styles.mainIcons}></i>Events
+              </Link>
+            </li>
+            <li style={styles.sidebarAnalyticsLi}>
+              <Link to="/publications" style={styles.sidebarAnalyticsA}>
+                <i className="fas fa-newspaper" style={styles.mainIcons}></i>Publications
+              </Link>
+            </li>
+            <li style={styles.sidebarAnalyticsLi}>
+              <Link to="/societies" style={styles.sidebarAnalyticsA}>
+                <i className="fas fa-users" style={styles.mainIcons}></i>Societies
+              </Link>
+            </li>
+          </ul>
+        </div>
+        <div style={styles.sidebarSettings}>
+          <p style={styles.sidebarSettingsP}>SETTINGS</p>
+          <ul style={styles.sidebarSettingsUl}>
+            <li style={styles.sidebarSettingsLi}>
+              <Link to="/placement" style={{ ...styles.sidebarAnalyticsA, ...styles.sidebarMenuActive }}>
+                <i className="fas fa-cog" style={styles.mainIcons}></i>Preferences
+              </Link>
+            </li>
+            <li style={styles.sidebarSettingsLi}>
+              <Link to="/help" style={styles.sidebarSettingsA}>
+                <i className="fas fa-question-circle" style={styles.mainIcons}></i>Help
+              </Link>
+            </li>
+          </ul>
+        </div>
+        {/* <div style={styles.sidebarAdmin}>
 
                     <div style={styles.adminIcon}>AD</div>
                     <div style={styles.adminInfo}>
@@ -456,7 +456,7 @@ const Preferences = () => {
 
                 </div> */}
 
-            </div>
+      </div>
       {/* Main Content */}
       <div style={styles.mainContent}>
         <header style={styles.PreferencesHeader}>
