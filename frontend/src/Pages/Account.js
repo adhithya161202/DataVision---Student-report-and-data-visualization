@@ -11,7 +11,7 @@ const Account = () => {
     firstName: '',
     lastName: '',
     email: '',
-    initials: 'AD' // Default initials
+    initials: 'AD' 
   });
   const navigate = useNavigate();
 
@@ -45,11 +45,7 @@ const Account = () => {
         <div className="sidebar-header">
           <h2 className="sidebar-header-h2">DATA VISION</h2>
           <div className="profile-section">
-          {/* <div className="profile-pic">{userData.initials}</div> */}
-            {/* <div className="admin-info">
-              <p className="admin-info-p">{`${userData.firstName} ${userData.lastName}`}</p>
-              <p className="admin-info-p">System Administrator</p>
-            </div> */}
+          
           </div>
         </div>
         <div className="sidebar-menu">
