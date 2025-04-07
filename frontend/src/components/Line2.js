@@ -32,13 +32,13 @@ const Line2 = () => {
         scales: {
             y: {
                 beginAtZero: true,
-                max: 60, // Set the maximum value for the Y-axis
+                max: 60, 
             },
         },
         plugins: {
             legend: {
-                display: true, // Show the legend
-                position: 'bottom', // Position the legend at the bottom
+                display: true, 
+                position: 'bottom', 
             },
             title: {
                 display: true,
