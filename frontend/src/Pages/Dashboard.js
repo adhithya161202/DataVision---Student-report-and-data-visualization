@@ -25,10 +25,10 @@ const Dashboard = () => {
                 <div className="sidebar-header">
                     <h2 className="sidebar-header-h2">DATA VISION</h2>
                     <div className="profile-section">
-            
+
                     </div>
                 </div>
-                {/* <p className="sidebar-header-p">Admin Dashboard</p> */}
+
                 <div className="sidebar-menu">
                     <ul className="sidebar-menu-ul">
                         <li className="sidebar-menu-li">
@@ -85,15 +85,7 @@ const Dashboard = () => {
                         </li>
                     </ul>
                 </div>
-                {/* <div className="sidebar-admin">
-
-                    <div className="admin-icon">AD</div>
-                    <div className="admin-info">
-                        <p className="admin-info-p">Admin User</p>
-                        <p className="admin-info-p:last-child">System Administrator</p>
-                    </div>
-
-                </div> */}
+             
 
             </div>
 
@@ -139,7 +131,7 @@ const Dashboard = () => {
 
                     <div className="data-card">
 
-                        <div className="graph-container">  
+                        <div className="graph-container">
                             <StudentsPieChart />
                         </div>
                     </div>
@@ -149,7 +141,7 @@ const Dashboard = () => {
                             <BarGraph />
                         </div>
                     </div>
-                   
+
                 </div>
             </div>
         </div>
