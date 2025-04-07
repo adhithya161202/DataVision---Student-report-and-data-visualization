@@ -107,12 +107,14 @@ const styles = {
     padding: "20px",
     borderRadius: "10px",
   },
+
   loading: {
     textAlign: "center",
     padding: "20px",
     fontSize: "18px",
     color: "#666"
   },
+  
   error: {
     textAlign: "center",
     padding: "20px",

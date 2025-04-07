@@ -11,19 +11,19 @@ const Line2 = () => {
         datasets: [
             {
                 label: 'Journal',
-                data: [15, 21, 28, 35, 42], // Example journal publication data
-                fill: true,  // Fill the area under the line
-                backgroundColor: 'rgba(54, 162, 235, 0.2)', // Light blue fill
-                borderColor: 'rgba(54, 162, 235, 1)', // Blue line
-                tension: 0.4, // Adjust the curve of the line
+                data: [15, 21, 28, 35, 42],
+                fill: true,  
+                backgroundColor: 'rgba(54, 162, 235, 0.2)', 
+                borderColor: 'rgba(54, 162, 235, 1)',
+                tension: 0.4, 
             },
             {
                 label: 'Conference',
-                data: [25, 37, 40, 48, 53], // Example conference publication data
-                fill: true, // Fill the area under the line
-                backgroundColor: 'rgba(75, 192, 192, 0.2)', // Light green fill
-                borderColor: 'rgba(75, 192, 192, 1)', // Green line
-                tension: 0.4, // Adjust the curve of the line
+                data: [25, 37, 40, 48, 53], 
+                fill: true, 
+                backgroundColor: 'rgba(75, 192, 192, 0.2)', 
+                borderColor: 'rgba(75, 192, 192, 1)', 
+                tension: 0.4, 
             },
         ],
     };
