@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { useNavigate } from "react-router-dom"; 
+import { useNavigate } from "react-router-dom";
 import "./Registration.css";
 
 function Registration() {
@@ -11,16 +11,16 @@ function Registration() {
     const [confirmPassword, setConfirmPassword] = useState('');
     const [termsAgreed, setTermsAgreed] = useState(false);
 
-    const navigate = useNavigate(); 
+    const navigate = useNavigate();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-    
+
         if (password !== confirmPassword) {
             alert("Passwords do not match");
             return;
         }
-    
+
         const payload = {
             firstName,
             lastName,
@@ -29,31 +29,31 @@ function Registration() {
             password,
             termsAgreed,
         };
-    
+
         try {
             const response = await fetch("http://localhost:8080/api/auth/register", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
             });
-    
+
             if (!response.ok) {
-                const errorMessage = await response.text(); 
+                const errorMessage = await response.text();
                 alert(`Registration failed: ${errorMessage}`);
                 return;
             }
-    
+
             const successMessage = await response.text();
-            alert(successMessage); 
-    
-            
+            alert(successMessage);
+
+
             window.location.href = "/login";
         } catch (error) {
             console.error("Error during registration:", error);
             alert("An unexpected error occurred. Please try again later.");
         }
     };
-    
+
     return (
         <div className="container">
             <div className="formContainer">
@@ -70,7 +70,7 @@ function Registration() {
                                 value={firstName}
                                 onChange={(e) => setFirstName(e.target.value)}
                                 className="input"
-                             />   
+                            />
                         </div>
                         <div className="formGroup">
                             <label htmlFor="lastName" className="label">Last Name</label>
@@ -94,17 +94,17 @@ function Registration() {
                             className="input"
                         />
                     </div>
-                    <div  className="nameContainer">
-                    <div className="formGroup">
-                        <label htmlFor="username" className="label">Username</label>
-                        <input
-                            type="text"
-                            id="username"
-                            value={username}
-                            onChange={(e) => setUsername(e.target.value)}
-                            className="input"
-                        />
-                    </div>
+                    <div className="nameContainer">
+                        <div className="formGroup">
+                            <label htmlFor="username" className="label">Username</label>
+                            <input
+                                type="text"
+                                id="username"
+                                value={username}
+                                onChange={(e) => setUsername(e.target.value)}
+                                className="input"
+                            />
+                        </div>
                     </div>
 
                     <div className="formGroup">
@@ -141,7 +141,7 @@ function Registration() {
                             className="checkbox"
                         />
                         <label className="termsLabel">
-                            I agree to the<a href="#"className="link">Terms of Service</a>and<a href="#"className="link">Privacy Policy</a>
+                            I agree to the<a href="#" className="link">Terms of Service</a>and<a href="#" className="link">Privacy Policy</a>
                         </label>
                     </div>
 
