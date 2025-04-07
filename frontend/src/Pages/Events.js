@@ -6,6 +6,7 @@ import axios from 'axios';
 import { usePDF } from 'react-to-pdf';
 import html2pdf from 'html2pdf.js';
 
+
 const Events = () => {
     const [eventsData, setEventsData] = useState([]);
     const [filteredData, setFilteredData] = useState([]);
