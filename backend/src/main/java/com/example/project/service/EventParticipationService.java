@@ -19,17 +19,32 @@ public class EventParticipationService {
         return repository.findAll();
     }
 
-    public List<EventParticipation> getFilteredEvents(String department, Integer year) {
-        if (department == null && year == null) {
+    public List<EventParticipation> getFilteredEvents(String department, Integer year, String eventType,
+            String eventCategory, Integer prizes_won, String prize_position) {
+        if ((department == null || department.isEmpty()) && year == null &&
+                (eventType == null || eventType.isEmpty()) &&
+                (eventCategory == null || eventCategory.isEmpty()) &&
+                prizes_won == null && (prize_position == null || prize_position.isEmpty())) {
             return repository.findAll();
-        } else if (department != null && year != null) {
-            return repository.findByDepartmentAndYear(department, year);
+        }
+        if (department != null && year != null && eventType != null && eventCategory != null &&
+                prizes_won != null && prize_position != null) {
+            return repository.findByDepartmentAndYearAndEventTypeAndEventCategoryAndPrizesWonAndPrizePosition(
+                    department, year, eventType, eventCategory, prizes_won, prize_position);
         } else if (department != null) {
             return repository.findByDepartment(department);
+        } else if (eventType != null) {
+            return repository.findByEventType(eventType);
+        } else if (eventCategory != null) {
+            return repository.findByEventCategory(eventCategory);
+        } else if (prizes_won != null) {
+            return repository.findByPrizesWon(prizes_won);
+        } else if (prize_position != null) {
+            return repository.findByPrizePosition(prize_position);
         } else {
             return repository.findByYear(year);
         }
+
     }
 
-    
 }
