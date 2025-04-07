@@ -41,7 +41,7 @@ const StudentsPieChart = () => {
     const options = {
         responsive: true,
         plugins: {
-            legend: { position: 'bottom' }, // Adjust legend position
+            legend: { position: 'bottom' },
             tooltip: {
                 callbacks: {
                     label: (tooltipItem) => `${tooltipItem.label}: ${tooltipItem.raw} students`,
