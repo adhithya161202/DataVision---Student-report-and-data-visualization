@@ -135,15 +135,7 @@ const Societies = () => {
                         </li>
                     </ul>
                 </div>
-                {/* <div className="sidebar-admin">
-        
-                            <div className="admin-icon">AD</div>
-                            <div className="admin-info">
-                                <p className="admin-info-p">Admin User</p>
-                                <p className="admin-info-p:last-child">System Administrator</p>
-                            </div>
-        
-                        </div> */}
+                
 
             </div>
             {/* Main Content */}
