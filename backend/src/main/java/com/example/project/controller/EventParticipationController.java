@@ -8,7 +8,7 @@ import java.util.List;
 
 @RestController
 @RequestMapping("/api/events")
-@CrossOrigin(origins = "http://localhost:3000") // Allow React frontend to access this API
+@CrossOrigin(origins = "http://localhost:3000") 
 public class EventParticipationController {
 
     private final EventParticipationService service;
@@ -20,9 +20,14 @@ public class EventParticipationController {
     @GetMapping
     public List<EventParticipation> getAllEvents(
             @RequestParam(required = false) String department,
-            @RequestParam(required = false) Integer year
+            @RequestParam(required = false) Integer year,
+            @RequestParam(required = false) String eventType,
+            @RequestParam(required = false) String eventCategory,
+            @RequestParam(required = false) Integer prizesWon,
+            @RequestParam(required = false) String prizePosition
+            
     ) {
-        return service.getFilteredEvents(department, year);
+        return service.getFilteredEvents(department, year, eventType, eventCategory, prizesWon, prizePosition);
     }
     @GetMapping("/all")
     public List<EventParticipation> getAllEvents() {
