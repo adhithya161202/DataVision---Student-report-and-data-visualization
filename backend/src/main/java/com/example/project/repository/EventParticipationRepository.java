@@ -13,5 +13,15 @@ public interface EventParticipationRepository extends JpaRepository<EventPartici
 
     List<EventParticipation> findByYear(Integer year);
 
-    List<EventParticipation> findByDepartmentAndYear(String department, Integer year);
+    List<EventParticipation> findByEventType(String eventType);
+
+    List<EventParticipation> findByEventCategory(String eventCategory);
+
+    List<EventParticipation> findByPrizesWon(Integer prizesWon); // Updated field name
+
+    List<EventParticipation> findByPrizePosition(String prizePosition); // Updated field name
+
+    List<EventParticipation> findByDepartmentAndYearAndEventTypeAndEventCategoryAndPrizesWonAndPrizePosition(
+    String department, Integer year, String eventType, String eventCategory, Integer prizesWon, String prizePosition);
+
 }
