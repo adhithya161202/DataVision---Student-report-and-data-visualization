@@ -72,6 +72,7 @@
   transition: background-color 0.3s ease;
   font-size: 16px;
 }
+
 .sidebarAnalytics p {
   color: #bdc3c7;
   margin-top: 20px;
@@ -129,6 +130,7 @@
   transition: background-color 0.3s ease;
   font-size: 16px;
 }
+
 .sidebar-admin {
   margin-top: auto;
   display: flex;
@@ -210,6 +212,7 @@
 .stat-card-p:last-child {
   font-size: 14px;
 }
+
 .filters {
   display: flex;
   gap: 10px;
@@ -353,54 +356,52 @@
 }
 
 .active-tab {
-    border-bottom: 2px solid #3498db;
-    color: #3498db;
+  border-bottom: 2px solid #3498db;
+  color: #3498db;
 }
 
 .section {
-    background-color: #fff;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
-    margin-bottom: 20px;
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  margin-bottom: 20px;
 }
 
 .section-title {
-    font-size: 20px;
-    color: #34495e;
-    margin-bottom: 15px;
-    text-align: left;
+  font-size: 20px;
+  color: #34495e;
+  margin-bottom: 15px;
+  text-align: left;
 }
 
 .info-field {
-    margin-bottom: 15px;
-    text-align: left;
+  margin-bottom: 15px;
+  text-align: left;
 }
 
 .label {
-    display: block;
-    font-size: 16px;
-    color: #34495e;
-    margin-bottom: 5px;
-    font-weight: bold;
-    text-align: left;
+  display: block;
+  font-size: 16px;
+  color: #34495e;
+  margin-bottom: 5px;
+  font-weight: bold;
+  text-align: left;
 }
 
 .info-text {
-    width: 100%;
-    padding: 10px;
-    font-size: 16px;
-    border-radius: 5px;
-    border: 1px solid #ddd;
-    color: #34495e;
-    text-align: left;
+  width: 100%;
+  padding: 10px;
+  font-size: 16px;
+  border-radius: 5px;
+  border: 1px solid #ddd;
+  color: #34495e;
+  text-align: left;
 }
 
 .account-details-text {
-    text-align: left;
-    font-size: 16px;
-    color: #7f8c8d;
-    margin-bottom: 10px;
+  text-align: left;
+  font-size: 16px;
+  color: #7f8c8d;
+  margin-bottom: 10px;
 }
-
-
