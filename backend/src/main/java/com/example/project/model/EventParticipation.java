@@ -1,3 +1,4 @@
+
 package com.example.project.model;
 
 import jakarta.persistence.*;
@@ -21,6 +22,18 @@ public class EventParticipation {
 
     @Column(name = "department", nullable = false)
     private String department;
+
+    @Column(name = "event_type", nullable = false)
+    private String eventType;
+
+    @Column(name = "event_category", nullable = false)
+    private String eventCategory;
+
+    @Column(name = "prizesWon")
+    private Integer prizesWon;
+    
+    @Column(name = "prizePosition")
+    private String prizePosition;
 
     // Getters and Setters
     public Integer getId() {
@@ -61,5 +74,37 @@ public class EventParticipation {
 
     public void setDepartment(String department) {
         this.department = department;
+    }
+
+    public String getEventType() {
+        return eventType;
+    }
+
+    public void setEventType(String eventType) {
+        this.eventType = eventType;
+    }
+
+    public void setEventCategory(String eventCategory) {
+        this.eventCategory = eventCategory;
+    }
+
+    public String getEventCategory() {
+        return eventCategory;
+    }
+
+    public Integer getpricesWon() {
+        return prizesWon;
+    }
+
+    public void setpricesWon(Integer pricesWon) {
+        this.prizesWon = pricesWon;
+    }
+
+    public String getPrize_position() {
+        return prizePosition;
+    }
+
+    public void setPrize_position(String prize_position) {
+        this.prizePosition = prize_position;
     }
 }
