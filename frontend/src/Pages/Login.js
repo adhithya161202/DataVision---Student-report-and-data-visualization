@@ -14,41 +14,41 @@ function Login() {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const payload = { usernameOrEmail, password };
-    
+
         try {
             const response = await fetch("http://localhost:8080/api/auth/login", {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(payload),
             });
-    
+
             if (!response.ok) {
                 const contentType = response.headers.get("content-type");
-    
-                // Handle non-JSON responses gracefully
+
+
                 if (!contentType || !contentType.includes("application/json")) {
                     const text = await response.text();
                     throw new Error(`Unexpected response: ${text}`);
                 }
-    
+
                 const errorData = await response.json();
                 throw new Error(errorData.error || "An unexpected error occurred.");
             }
-    
+
             const data = await response.json();
             localStorage.setItem("firstName", data.firstName);
             localStorage.setItem("lastName", data.lastName);
             localStorage.setItem("email", data.email);
             localStorage.setItem("isLoggedIn", "true");
-    
+
             navigate("/dashboard");
         } catch (error) {
             console.error("Error during login:", error);
             setErrorMessage(error.message || "An unexpected error occurred. Please try again later.");
         }
     };
-    
-    
+
+
     const handleForgotPassword = async (e) => {
         e.preventDefault();
 
@@ -88,7 +88,7 @@ function Login() {
                     <h1 className="HEAD1">WELCOME</h1>
                     <h1 className="HEAD2">DATAVISION</h1>
                     <p>@NIT CALICUT 2025</p>
-                 
+
 
                 </div>
                 {/* Right Section */}
@@ -99,7 +99,7 @@ function Login() {
                     </div>
 
                     <form onSubmit={handleSubmit} className="form">
-                    {errorMessage && <p className="error">{errorMessage}</p>}
+                        {errorMessage && <p className="error">{errorMessage}</p>}
                         <div className="formGroup">
                             <label htmlFor="usernameOrEmail" className="label">Username</label>
                             <input
