@@ -13,7 +13,7 @@ const SocietyChart = ({ data }) => {
   }
 
   const chartData = {
-    labels: [...new Set(data.map((society) => society.societyName))], // Unique society names
+    labels: [...new Set(data.map((society) => society.societyName))], 
     datasets: [
       {
         label: "Society Data",
@@ -21,10 +21,10 @@ const SocietyChart = ({ data }) => {
           (acc, society) => {
             const index = acc.labels.indexOf(society.societyName);
             if (index === -1) {
-              acc.labels.push(society.societyName); // Add new society name
-              acc.data.push(1); // Initialize count
+              acc.labels.push(society.societyName); 
+              acc.data.push(1); 
             } else {
-              acc.data[index] += 1; // Increment count for existing society
+              acc.data[index] += 1; 
             }
             return acc;
           },
